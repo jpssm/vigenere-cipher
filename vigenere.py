@@ -1,4 +1,4 @@
-import re
+import re, string
 
 def shift(key_l, msg_l):
     ord_value = (ord(key_l) + ord(msg_l) - 2 * ord('a')) % 26 + ord('a')
@@ -7,11 +7,6 @@ def shift(key_l, msg_l):
 def unshift(key_l, msg_l):
     ord_value = (ord(msg_l) - ord(key_l)) % 26 + ord('a')
     return chr(ord_value)
-
-def to_lower_case(str):
-    pattern = re.compile('[\W_]+')
-    str = pattern.sub(' ', str).lower()
-    return str
 
 def match_key(key, msg):
     msg_letters = sum(l.isalpha() for l in msg)
@@ -45,8 +40,11 @@ def decrypt(key, msg):
 
 
 if __name__ == "__main__":
-    key = (to_lower_case(input('Enter key: ')))
-    msg  = (to_lower_case(input('Enter message: ')))
+    key  = input('Enter key: ')
+    msg  = input('Enter message: ')
+
+    key = key.lower()
+    msg = msg.lower()
 
     key = match_key(key, msg)
 
