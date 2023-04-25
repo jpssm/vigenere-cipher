@@ -19,7 +19,7 @@ def encrypt(key, msg):
     msg_l = list(msg)
     j = 0
     k = 0
-    for i in key_l:
+    for i in msg_l:
         if msg_l[j].isalpha():
             msg_l[j] = shift(key_l[k], msg_l[j])
             k = k + 1
@@ -31,13 +31,12 @@ def decrypt(key, msg):
     msg_l = list(msg)
     j = 0
     k = 0
-    for i in key_l:
+    for i in msg_l:
         if msg_l[j].isalpha():
             msg_l[j] = unshift(key_l[k], msg_l[j])
             k = k + 1
         j = j + 1
     return "".join(msg_l)
-
 
 if __name__ == "__main__":
     key  = input('Enter key: ')
